@@ -7,20 +7,18 @@ class App extends Component {
       <div className="app">
         {/*The header part of the app structure*/}
         <header className="header">
-          <nav class='main-nav'>
-            <div class='main-nav-header'>
-              <div class='main-nav-header-left'></div>
-              <div class='main-nav-header-center'></div>
-              <div class='main-nav-header-right'></div>
-            </div>
+          <nav className='main-nav'>
+            <div className='main-nav-left'></div>
+            <div className='main-nav-center'></div>
+            <div className='main-nav-right'></div>
           </nav>
         </header>
         {/*The main part of the app structure*/}
-        <main class='main'>
+        <main className='main'>
 
         </main>
         {/*The footer part of the app structure*/}
-        <footer class='footer'>
+        <footer className='footer'>
 
         </footer>
       </div>

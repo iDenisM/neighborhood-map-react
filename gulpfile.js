@@ -1,12 +1,16 @@
 'use strict';
 
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+const gulp = require('gulp'),
+sass = require('gulp-sass'),
+autoprefixer = require('gulp-autoprefixer');
 
 gulp.task('sass', function () {
   return gulp.src('./sass/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
+  .pipe(sass({
+    style: 'compressed'
+  }).on('error', sass.logError))
+  .pipe(autoprefixer('last 2 versions'))
+  .pipe(gulp.dest('./src'));
 });
 
 gulp.task('sass:watch', function () {

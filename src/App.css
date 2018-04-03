@@ -1,7 +1,17 @@
 .app {
   font-family: 'Open Sans', sans-serif;
-  text-align: center;
-}
+  text-align: center; }
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0;
+  margin: 0; }
 
 /* HEADER */
 .header {
@@ -9,95 +19,74 @@
   position: relative;
   background-color: #222;
   height: 50px;
-  padding: 5px 20px;
   color: white;
-  position: fixed;
-  top: 0;
-}
-
-/* -navigation- */
-.main-nav {
-  display: flex;
-  flex-wrap: wrap;
-  width: calc(100% - 40px);
-  height: 100%;
-}
-
-.main-nav-left {
-  width: 20%;
-  background-color: red;
-}
-
-.main-nav-center {
-  width: 60%;
-  background-color: blue;
-}
-
-.main-nav-right {
-  width: 20%;
-  background-color: green;
-}
-
-.hambuger-icon {
-  display: inline-block;
-  cursor: pointer;
-  vertical-align: middle;
-  width: 25px;
-  height: 100%;
-}
-
-.hambuger-icon .lines {
-  display: inline-block;
-  position: relative;
-  width: 25px;
-  height: 2px;
-  background: #2d96cd none repeat scroll 0 0;
-  border-radius: 1px;
-  content: '';
-}
-
-.hambuger-icon .lines:before {
-  content: '';
-  top: -3px;
-  display: inline-block;
-}
-
-.hambuger-icon .lines:after {
-  content: '';
-  top: 3px;
-  display: inline-block;
-}
+  /* -navigation- */ }
+  .header .main-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: calc(100% - 40px);
+    height: 100%; }
+    .header .main-nav .main-nav-left {
+      width: 20%;
+      background-color: red; }
+      .header .main-nav .main-nav-left .hambuger-icon {
+        display: inline-block;
+        cursor: pointer;
+        vertical-align: middle;
+        width: 25px;
+        height: 100%; }
+        .header .main-nav .main-nav-left .hambuger-icon .lines {
+          display: inline-block;
+          position: relative;
+          width: 25px;
+          height: 2px;
+          background: #2d96cd none repeat scroll 0 0;
+          border-radius: 1px; }
+        .header .main-nav .main-nav-left .hambuger-icon .lines::before {
+          top: 2px; }
+    .header .main-nav .main-nav-center {
+      width: 60%;
+      background-color: blue; }
+    .header .main-nav .main-nav-right {
+      width: 20%;
+      background-color: green; }
 
 /* MAIN */
 .main {
   width: 100%;
-  height: 1250px;
-  background-color: blue;
-}
-
-#map {
-  width: 100%;
-  height: 100%;
-}
+  height: calc(100vh - 100px);
+  background-color: blue; }
+  .main #map {
+    width: 100%;
+    height: 100%; }
 
 /* FOOTER */
 .footer {
   width: 100%;
   height: 50px;
-  background-color: green;
-}
+  background-color: green; }
 
 /* animation  example delete when not needed any more*/
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+  -webkit-animation: App-logo-spin infinite 20s linear;
+          animation: App-logo-spin infinite 20s linear;
+  height: 80px; }
+
+@-webkit-keyframes App-logo-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 
 @keyframes App-logo-spin {
   from {
-      transform: rotate(0deg);
-  }
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); }
   to {
-      transform: rotate(360deg);
-  }
-}
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }

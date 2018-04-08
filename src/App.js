@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Map from './Map'
+import Navigation from './Navigation'
 import './App.css';
 
 export default class App extends Component {
@@ -27,11 +28,16 @@ export default class App extends Component {
     return (
       <div className="app">
         <div className='container'>
+        {/*The navigation control menu*/}
+        <Navigation/>
         {/*The header part of the app structure*/}
           <header className='header'>
             <nav className='main-nav'>
               <div className='main-nav-left'>
-                <a className='toggle-nav-menu hambuger-icon'>
+                <a
+                  id='burger'
+                  className='toggle-nav-menu hambuger-icon'
+                >
                   <span className='lines'></span>
                 </a>
               </div>
@@ -45,6 +51,7 @@ export default class App extends Component {
               map={this.state.map}
               locations={this.state.locations}
             />
+
           </main>
           {/*The footer part of the app structure*/}
           <footer className='footer'>

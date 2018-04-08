@@ -23,7 +23,7 @@ export default class Map extends Component {
       this.setState((prevState) => {
         markers: [...prevState.markers, newMarker]
       })
-      // Eztends the boundries of the map for each marker
+      // Extends the boundries of the map for each marker
       bounds.extend(location.position)
       //Event lisners
       newMarker.addListener('click', () => this.populateInfoWindow(map, newMarker, largeInfoWindow))

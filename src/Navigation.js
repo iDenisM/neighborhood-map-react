@@ -29,9 +29,9 @@ export default class Navigation extends Component {
         <span>view markers</span>
 
           {/* Create the switch button */}
-          <label id='click-view-markers' class='switch'>
-            <input id='view-markers' type='checkbox' checked></input>
-            <span class='slider round'></span>
+          <label id='click-view-markers' className='switch'>
+            <input id='view-markers' type='checkbox' defaultChecked></input>
+            <span className='slider round'></span>
           </label>
         </div>
       </div>

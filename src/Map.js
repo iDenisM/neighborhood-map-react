@@ -6,22 +6,22 @@ export default class Map extends Component {
   }
 
   componentDidMount() {
-    let map = new window.google.maps.Map(document.getElementById('map'), this.props.map),
-        largeInfoWindow = new window.google.maps.InfoWindow(),
-        bounds = new window.google.maps.LatLngBounds()
+    const map = new window.google.maps.Map(document.getElementById('map'), this.props.map),
+          largeInfoWindow = new window.google.maps.InfoWindow(),
+          bounds = new window.google.maps.LatLngBounds()
 
-    this.props.locations.map((location, index) => {
+    Object.keys(this.props.locations).map((location, index) => {
       // Create the location
       let newMarker = new window.google.maps.Marker({
         map: map,
-        position: location.position,
-        title: location.title,
+        position: location[index].position,
+        title: location[index].title,
         animation: window.google.maps.Animation.DROP,
         id: index
       })
       // Push the new location to the markers holder
-      this.setState((prevState) => {
-        markers: [...prevState.markers, newMarker]
+      this.setState({
+        markers: [...this.state.markers, newMarker]
       })
       // Extends the boundries of the map for each marker
       bounds.extend(location.position)

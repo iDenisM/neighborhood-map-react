@@ -145,24 +145,47 @@
   height: 50px;
   background-color: green; }
 
-/* animation  example delete when not needed any more*/
-.App-logo {
-  -webkit-animation: App-logo-spin infinite 20s linear;
-          animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
+/* Loading animated circle
+*/
+#load {
+  width: 50px;
+  -webkit-animation: loading 3s linear infinite;
+          animation: loading 3s linear infinite; }
+  #load #loading-inner {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 300;
+    stroke-width: 10;
+    stroke-miterlimit: 10;
+    stroke-linecap: round;
+    -webkit-animation: loading-circle 2s linear infinite;
+            animation: loading-circle 2s linear infinite;
+    stroke: #51BBA7;
+    fill: transparent; }
 
-@-webkit-keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  to {
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
-@keyframes App-logo-spin {
-  from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg); }
-  to {
+@keyframes loading {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
+
+@-webkit-keyframes loading-circle {
+  0% {
+    stroke-dashoffset: 0; }
+  100% {
+    stroke-dashoffset: -600; } }
+
+@keyframes loading-circle {
+  0% {
+    stroke-dashoffset: 0; }
+  100% {
+    stroke-dashoffset: -600; } }

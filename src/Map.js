@@ -8,23 +8,24 @@ export default class Map extends Component {
   componentDidMount() {
     const map = new window.google.maps.Map(document.getElementById('map'), this.props.map),
           largeInfoWindow = new window.google.maps.InfoWindow(),
-          bounds = new window.google.maps.LatLngBounds()
+          bounds = new window.google.maps.LatLngBounds(),
+          locations = this.props.locations
 
-    Object.keys(this.props.locations).map((location, index) => {
+    Object.keys(locations).map(location => {
       // Create the location
       let newMarker = new window.google.maps.Marker({
         map: map,
-        position: location[index].position,
-        title: location[index].title,
+        position: locations[location].position,
+        title: locations[location].title,
         animation: window.google.maps.Animation.DROP,
-        id: index
+        id: location
       })
       // Push the new location to the markers holder
       this.setState({
         markers: [...this.state.markers, newMarker]
       })
       // Extends the boundries of the map for each marker
-      bounds.extend(location.position)
+      bounds.extend(locations[location].position)
       //Event lisners
       newMarker.addListener('click', () => this.populateInfoWindow(map, newMarker, largeInfoWindow))
       return location
@@ -46,6 +47,7 @@ export default class Map extends Component {
   render() {
     return (
       <div id='map'></div>
+
     )
   }
 }

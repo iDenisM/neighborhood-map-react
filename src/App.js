@@ -30,8 +30,7 @@ export default class App extends Component {
     // Fetch the database
     const rootRef = base.database().ref().child('locations')
     rootRef.on('value', location => {
-      let locations = location.val()
-      this.setState({ locations })
+      this.setState({ locations: location.val() })
       // Object.keys(locations).map(id => {
       //   let newLocation = {
       //     id: id,
@@ -51,18 +50,6 @@ export default class App extends Component {
   render() {
     return (
       <div className="app">
-      {/* The next div is for debuggin purpose */}
-      <div>
-        {
-          Object.keys(this.state.locations).length > 0 ? (
-            Object.keys(this.state.locations).map(location => (
-              <p>{location}</p>
-            ))
-          ) : (
-            <p>undefined</p>
-          )
-        }
-      </div>
         <div className='container'>
         {/*The navigation control menu*/}
         <Navigation/>
@@ -83,10 +70,19 @@ export default class App extends Component {
           </header>
           {/*The main part of the app structure*/}
           <main className='main'>
-            <Map
-              map={this.state.map}
-              locations={this.state.locations}
-            />
+            {
+              Object.keys(this.state.locations).length > 0 ? (
+                <Map
+                  map={this.state.map}
+                  locations={this.state.locations}
+                />
+              ) : (
+                <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
+                  <circle id="loading-inner" cx="75" cy="75" r="60"/>
+                </svg>
+              )
+            }
+
           </main>
           {/*The footer part of the app structure*/}
           <footer className='footer'>

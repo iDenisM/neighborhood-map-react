@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 
 export default class Map extends Component {
-  state = {
-    markers: []
-  }
 
   componentDidMount() {
     const map = new window.google.maps.Map(document.getElementById('map'), this.props.map),
           largeInfoWindow = new window.google.maps.InfoWindow(),
-          bounds = new window.google.maps.LatLngBounds(),
           locations = this.props.locations
+    let bounds = new window.google.maps.LatLngBounds()
 
     Object.keys(locations).map(location => {
       // Create the location
@@ -21,14 +18,23 @@ export default class Map extends Component {
         id: location
       })
       // Push the new location to the markers holder
-      this.setState({
-        markers: [...this.state.markers, newMarker]
-      })
+      this.props.addMarker(newMarker)
+      console.log(this.props.markers);
       // Extends the boundries of the map for each marker
-      bounds.extend(locations[location].position)
+      // bounds.extend(locations[location].position)
       //Event lisners
       newMarker.addListener('click', () => this.populateInfoWindow(map, newMarker, largeInfoWindow))
       return location
+    })
+    // map.fitBounds(bounds)
+    // this.showMarkers(map, bounds)
+  }
+
+  showMarkers = (map, bounds) => {
+    // Extends the map bounds for each marker and display it
+    this.props.markers.map(marker => {
+      marker.setMap(map)
+      bounds.extend(marker.position)
     })
     map.fitBounds(bounds)
   }

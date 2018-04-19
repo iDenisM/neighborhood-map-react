@@ -11,19 +11,9 @@ export default class App extends Component {
       zoom: 12,
       mapTypeId: 'roadmap'
     },
-    locations: {}
-    // {
-    //   title: 'My Home',
-    //   position: {lat: 44.592301, lng: 11.051069}
-    // },
-    // {
-    //   title: 'Coop Super Market',
-    //   position: {lat: 44.593414, lng: 11.050536}
-    // },
-    // {
-    //   title: 'Teatro Dada',
-    //   position: {lat: 44.5917125, lng: 11.0523466}
-    // }
+    locations: {},
+    markers: [],
+    showMarkers: true
   }
 
   componentDidMount() {
@@ -31,20 +21,15 @@ export default class App extends Component {
     const rootRef = base.database().ref().child('locations')
     rootRef.on('value', location => {
       this.setState({ locations: location.val() })
-      // Object.keys(locations).map(id => {
-      //   let newLocation = {
-      //     id: id,
-      //     title: locations[id].title,
-      //     position: {
-      //       lat: locations[id].position.lat,
-      //       lng: locations[id].position.lng
-      //     }
-      //   }
-      //   let addLocation = [...this.state.locations, newLocation]
-      //   // this.setState({ locs: newLocation })
-      //   return id
-      // })
     })
+  }
+
+  toggleShowMarkers = (condition) => {
+    this.setState({ showMarkers: condition })
+  }
+
+  addMarker = (marker) => {
+    this.setState({ markers: [...this.state.markers, marker] })
   }
 
   render() {
@@ -52,7 +37,9 @@ export default class App extends Component {
       <div className="app">
         <div className='container'>
         {/*The navigation control menu*/}
-        <Navigation/>
+        <Navigation
+          onToggleShowMarkers={this.toggleShowMarkers}
+        />
         {/*The header part of the app structure*/}
           <header className='header'>
             <nav className='main-nav'>
@@ -60,6 +47,7 @@ export default class App extends Component {
                 <a
                   id='burger'
                   className='toggle-nav-menu hambuger-icon'
+                  onClick={() => document.getElementById('draw-nav').classList.toggle('open')}
                 >
                   <span className='lines'></span>
                 </a>
@@ -75,6 +63,9 @@ export default class App extends Component {
                 <Map
                   map={this.state.map}
                   locations={this.state.locations}
+                  showMarkers={this.state.showMarkers}
+                  markers={this.state.markers}
+                  addMarker={this.addMarker}
                 />
               ) : (
                 <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">

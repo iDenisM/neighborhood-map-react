@@ -1,40 +1,29 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './App.css'
 
-export default class Navigation extends Component {
-  componentDidMount() {
-    const burger = document.getElementById('burger'),
-          navigationMenu = document.getElementById('draw-nav'),
-          viewMarkers = document.getElementById('view-markers'),
-          clickViewMarkers = document.getElementById('click-view-markers')
-
-    burger.addEventListener('click', () => {
-      navigationMenu.classList.toggle('open')
-    })
-    clickViewMarkers.addEventListener('click', () => {
-      viewMarkers.checked ? viewMarkers.checked = false : viewMarkers.checked = true
-    })
-  }
-
-  render() {
-    return(
-      <div
-        id='draw-nav'
-        className='nav-list'
-      >
-        <div
-          id='hide-markers'
-          className='nav-item'
-        >
+function Navigation(props) {
+  const viewMarkers = document.getElementById('view-markers')
+  return(
+    <div
+      id='draw-nav'
+      className='nav-list'
+    >
+      <div id='hide-markers' className='nav-item'>
         <span>view markers</span>
 
-          {/* Create the switch button */}
-          <label id='click-view-markers' className='switch'>
-            <input id='view-markers' type='checkbox' defaultChecked></input>
-            <span className='slider round'></span>
-          </label>
-        </div>
+        {/* Create the switch button */}
+        <label
+          id='click-view-markers' className='switch'
+        >
+          <input id='view-markers' type='checkbox' defaultChecked></input>
+          <span
+            className='slider round'
+            onClick={() => props.onToggleShowMarkers(viewMarkers.checked ? false : true)}
+          ></span>
+        </label>
       </div>
-    )
-  }
+    </div>
+  )
 }
+
+export default Navigation

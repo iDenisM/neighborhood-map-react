@@ -5,17 +5,18 @@ export default class Navigation extends Component {
 
   toggleMarkersView = (viewMarkers) => {
     if (!viewMarkers) {
+      let bounds = new window.google.maps.LatLngBounds()
       // Show the markers
       this.props.markers.map(marker => {
         marker.setMap(this.props.map)
+        bounds.extend(marker.position)
       })
-      console.log(`show markers`)
+      this.props.map.fitBounds(bounds)
     } else {
       // Hide the markers
       this.props.markers.map(marker => {
         marker.setMap(null)
       })
-      console.log(`hide markers`)
     }
   }
 

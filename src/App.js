@@ -6,11 +6,12 @@ import './App.css'
 
 export default class App extends Component {
   state = {
-    map: {
+    mapInfo: {
       center: {lat: 44.592301, lng: 11.051069},
       zoom: 12,
       mapTypeId: 'roadmap'
     },
+    map: {},
     locations: {},
     markers: [],
     showMarkers: true
@@ -28,8 +29,14 @@ export default class App extends Component {
     this.setState({ showMarkers: condition })
   }
 
-  addMarker = (marker) => {
-    this.setState({ markers: [...this.state.markers, marker] })
+  // Set the markers state
+  addMarkers = (markers) => {
+    this.setState({ markers: [...this.state.markers, ...markers] })
+  }
+
+  // Set the map
+  setMap = (newMap) => {
+    this.setState({ map: newMap})
   }
 
   render() {
@@ -39,6 +46,8 @@ export default class App extends Component {
         {/*The navigation control menu*/}
         <Navigation
           onToggleShowMarkers={this.toggleShowMarkers}
+          markers={this.state.markers}
+          map={this.state.map}
         />
         {/*The header part of the app structure*/}
           <header className='header'>
@@ -61,11 +70,12 @@ export default class App extends Component {
             {
               Object.keys(this.state.locations).length > 0 ? (
                 <Map
-                  map={this.state.map}
+                  mapInfo={this.state.mapInfo}
                   locations={this.state.locations}
                   showMarkers={this.state.showMarkers}
                   markers={this.state.markers}
-                  addMarker={this.addMarker}
+                  addMarkers={this.addMarkers}
+                  setMap={this.setMap}
                 />
               ) : (
                 <svg id="load" x="0px" y="0px" viewBox="0 0 150 150">
